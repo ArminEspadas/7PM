@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btnclientes= (ImageButton)findViewById(R.id.btnClientes);
         btnordenes= (ImageButton)findViewById(R.id.btnOrdenes);
         btnreportes= (ImageButton)findViewById(R.id.btnReportes);
-        // DECLARANDO BOTONES
+        // DECLARANDO BOTONESs
     }
 
     // Boton categorias
