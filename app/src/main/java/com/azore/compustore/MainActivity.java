@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     private  InventoryHelper inventoryHelper;
 
+    private RecyclerView recyclerView;
+
 
 
     @Override
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         //final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item);
 
 
-       final List<CategoryProduct> categoryProductList= inventory.getAllCategoriesProduct();
+       final List<CategoryProduct> categoryProductList= inventory. getAllCategoriesProduct();
 
        CategoryProduct c= new CategoryProduct(categoryProductList.get(1).getId(),categoryProductList.get(1).getDescription() );
         Toast.makeText(getApplicationContext(), c.getDescription() , Toast.LENGTH_LONG).show();

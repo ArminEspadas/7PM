@@ -39,27 +39,28 @@ public final class Inventory {
 
     }
 
-    public List<CategoryProduct> getAllCategoriesProduct()
-    {
-        List<CategoryProduct> list = new ArrayList<CategoryProduct>();
 
-        //  Cursor cursor = db.rawQuery("SELECT * FROM categories ORDER BY id", null);
+       public List<CategoryProduct> getAllCategoriesProduct() {
+           List<CategoryProduct> list = new ArrayList<CategoryProduct>();
 
-        CategoryProductCursor cursor = new CategoryProductCursor((db.rawQuery("SELECT * FROM product_categories ORDER BY id", null)));
+           //  Cursor cursor = db.rawQuery("SELECT * FROM categories ORDER BY id", null);
 
-        while (cursor.moveToNext()){
+           CategoryProductCursor cursor = new CategoryProductCursor((db.rawQuery("SELECT * FROM product_categories ORDER BY id", null)));
 
-            //list.add(new Category(cursor.getInt(cursor.getColumnIndex((InventoryDBSchema.CategoriesTable.Columns.ID))),
-            //   cursor.getString(cursor.getColumnIndex((InventoryDBSchema.CategoriesTable.Columns.DESCRIPTION)))));
+           while (cursor.moveToNext()) {
 
-            list.add((cursor.getCategoryProduct()));  // metodo wrappcursor
+               //list.add(new Category(cursor.getInt(cursor.getColumnIndex((InventoryDBSchema.CategoriesTable.Columns.ID))),
+               //   cursor.getString(cursor.getColumnIndex((InventoryDBSchema.CategoriesTable.Columns.DESCRIPTION)))));
 
-        }
-        cursor.close();
+               list.add((cursor.getCategoryProduct()));  // metodo wrappcursor
 
-        return list;
+           }
+           cursor.close();
 
-    }
+           return list;
+
+
+   }
 
 
 
