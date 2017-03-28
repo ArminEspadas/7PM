@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
     //HHHHHH
-    //gugug
+    //gugugbb
 //HHHH
     //subí un c<mbio test
 //NUEYB
