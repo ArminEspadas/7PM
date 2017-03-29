@@ -54,16 +54,17 @@ public class MainActivity extends AppCompatActivity {
         // DECLARANDO BOTONES
 
         inventory= new Inventory(getApplicationContext());
-      InventoryHelper.backupDatabaseFile(getApplicationContext());
+     // InventoryHelper.backupDatabaseFile(getApplicationContext());
 
         //final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item);
 
 
-       final List<CategoryProduct> categoryProductList= inventory. getAllCategoriesProduct();
+       final List<CategoryProduct> categoryProductList= inventory.getAllCategoriesProduct();
 
        CategoryProduct c= new CategoryProduct(categoryProductList.get(1).getId(),categoryProductList.get(1).getDescription() );
-        Toast.makeText(getApplicationContext(), c.getDescription() , Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), c.getDescription() , Toast.LENGTH_LONG).show();
 
+        Toast.makeText(this,Integer.toString(categoryProductList.size()),Toast.LENGTH_SHORT).show();
 
 
     }
