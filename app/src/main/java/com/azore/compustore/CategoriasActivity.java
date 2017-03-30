@@ -2,13 +2,19 @@ package com.azore.compustore;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.azore.compustore.fiuady.db.*;
@@ -19,7 +25,6 @@ import java.util.List;
 public class CategoriasActivity extends AppCompatActivity {
 
     private class CategoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
 
         private TextView txtDescription;
         Context context;
@@ -45,10 +50,21 @@ public class CategoriasActivity extends AppCompatActivity {
             int position = getAdapterPosition() ;
             CategoryProduct categoryProduct=this.categoryProducts.get(position);
 
-            Toast.makeText(getApplicationContext(), Integer.toString(categoryProduct.getId()) , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), categoryProduct.getDescription()+" "+Integer.toString(categoryProduct.getId()) , Toast.LENGTH_LONG).show();
+          //  startActivity(new Intent(getApplicationContext(),Pop.class));
 
-            startActivity(new Intent(getApplicationContext(),Pop.class));
+            constraintLayout= (ConstraintLayout) findViewById(R.id.popup_category);
+            layoutInflater=(LayoutInflater)getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+            ViewGroup container =( ViewGroup) layoutInflater.inflate(R.layout.pop_up_category, null);
+            popupWindow= new PopupWindow(container, 400,400, true);
+
+            textView_name= (TextView)findViewById(R.id.textview_categories);
+            textView_name.setText("prube");
+
+            popupWindow.showAtLocation(constraintLayout, Gravity.NO_GRAVITY, 500,500);
+          //  textView_name.setText(categoryProduct.getDescription().toString());
         }
+
     }
 
 
@@ -83,6 +99,15 @@ public class CategoriasActivity extends AppCompatActivity {
     private CategoriesAdapter adapter;
     private Inventory inventory;
 
+
+    private PopupWindow  popupWindow;
+    private LayoutInflater layoutInflater;
+    private ConstraintLayout constraintLayout;
+    private  TextView textView_name;
+    private  TextView poder;
+
+
+
 //__________________________________________________________
 
     @Override
@@ -92,18 +117,23 @@ public class CategoriasActivity extends AppCompatActivity {
         //Cambiar texto de App bar
         getSupportActionBar().setTitle("Categorías");
 
+
         recyclerView=(RecyclerView) findViewById(R.id.recycler_categories);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        inventory= new Inventory(getApplicationContext());
 
+        inventory= new Inventory(getApplicationContext());
         //List<CategoryProduct> categories= Arrays.asList(new CategoryProduct(1,"Armin"));
         final List<CategoryProduct> categories = inventory.getAllCategoriesProduct();
-
+        poder= (TextView) findViewById(R.id.power) ;
+        poder.setText("uu");
       //  Toast.makeText(this,categories.get(0).getDescription()+"  "+categories.get(1).getDescription(),Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,Integer.toString(categories.size()),Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this,Integer.toString(categories.size()),Toast.LENGTH_SHORT).show();
 
         adapter= new CategoriesAdapter(categories,this);
         recyclerView.setAdapter(adapter);
+
+
+
 
     }
 
