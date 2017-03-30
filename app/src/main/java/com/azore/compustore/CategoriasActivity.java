@@ -1,5 +1,6 @@
 package com.azore.compustore;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,6 +45,9 @@ public class CategoriasActivity extends AppCompatActivity {
             int position = getAdapterPosition() ;
             CategoryProduct categoryProduct=this.categoryProducts.get(position);
 
+            Toast.makeText(getApplicationContext(), Integer.toString(categoryProduct.getId()) , Toast.LENGTH_LONG).show();
+
+            startActivity(new Intent(getApplicationContext(),Pop.class));
         }
     }
 
